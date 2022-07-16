@@ -1,5 +1,7 @@
 import express from "express";
 
+import productRoutes from "./routes/product.js";
+
 const app = express();
 
 app.use((_, res, next) => {
@@ -17,5 +19,7 @@ app.use((_, res, next) => {
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use("/api/products", productRoutes);
 
 export default app;
