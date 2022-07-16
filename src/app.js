@@ -1,4 +1,6 @@
 import express from "express";
+import path from "path";
+import { fileURLToPath } from "url";
 
 import productRoutes from "./routes/product.js";
 
@@ -16,6 +18,12 @@ app.use((_, res, next) => {
     );
     next();
 });
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use("/images", express.static(path.join(__dirname, "images")));
+app.use(express.static("images"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
