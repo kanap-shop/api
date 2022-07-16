@@ -88,7 +88,7 @@ export const findById = (id) =>
     new Promise((resolve) =>
         resolve(
             JSON.parse(JSON.stringify(products)).find(
-                (product) => product._id == id,
+                (product) => product._id === id,
             ),
         ),
     );

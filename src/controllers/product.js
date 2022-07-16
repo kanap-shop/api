@@ -5,12 +5,8 @@ export const getAllProducts = (req, res) => {
     Product.find()
         .then((products) => {
             const mappedProducts = products.map((product) => {
-                product.imageUrl =
-                    req.protocol +
-                    "://" +
-                    req.get("host") +
-                    "/images/" +
-                    product.imageUrl;
+                const host = req.get("host");
+                product.imageUrl = `${req.protocol}://${host}/images/${product.imageUrl}`;
 
                 return product;
             });
@@ -27,12 +23,10 @@ export const getOneProduct = (req, res) => {
             if (!product) {
                 return res.status(404).send(new Error("Product not found!"));
             }
-            product.imageUrl =
-                req.protocol +
-                "://" +
-                req.get("host") +
-                "/images/" +
-                product.imageUrl;
+
+            const host = req.get("host");
+            product.imageUrl = `${req.protocol}://${host}/images/${product.imageUrl}`;
+
             res.status(200).json(product);
         })
         .catch(() => {
@@ -61,12 +55,10 @@ export const orderProducts = (req, res) => {
                     if (!product) {
                         reject("Product not found: " + productId);
                     }
-                    product.imageUrl =
-                        req.protocol +
-                        "://" +
-                        req.get("host") +
-                        "/images/" +
-                        product.imageUrl;
+
+                    const host = req.get("host");
+                    product.imageUrl = `${req.protocol}://${host}/images/${product.imageUrl}`;
+
                     resolve(product);
                 })
                 .catch(() => {
@@ -75,6 +67,7 @@ export const orderProducts = (req, res) => {
         });
         queries.push(queryPromise);
     }
+
     Promise.all(queries)
         .then((products) => {
             const orderId = uuid();
