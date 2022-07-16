@@ -1,14 +1,14 @@
 {
     "name": "kanap-shopt-tk-api",
     "version": "1.0.0",
-    "main": "src/app.js",
+    "main": "src/server.js",
     "type": "module",
     "description": "Back end of the kanap-shop.tk website",
     "scripts": {
         "lint": "eslint src --ext .js",
         "lint:fix": "eslint src --ext .js --fix",
         "start:dev": "nodemon",
-        "start": "yarn lint --fix && node src/app.js"
+        "start": "yarn lint --fix && node src/server.js"
     },
     "repository": "https://github.com/kanap-shop-tk/api.git",
     "author": {

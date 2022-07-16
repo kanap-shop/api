@@ -3,5 +3,5 @@
         "src/"
     ],
     "ext": "js",
-    "exec": "eslint src --ext .js --fix && node src/app.js"
+    "exec": "eslint src --ext .js --fix && node src/server.js"
 }
